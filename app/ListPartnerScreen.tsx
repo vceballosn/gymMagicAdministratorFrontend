@@ -1,9 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 import { Alert, Button, ScrollView, StyleSheet, View } from 'react-native';
-import PartnerCard from '../../components/PartnerCard';
-import { Partner } from '../../interfaces/interfacePartner';
-import { deletePartner, getPartners } from '../../lib/services/partnersService';
+import PartnerCard from '../components/PartnerCard';
+import { Partner } from '../interfaces/interfacePartner';
+import { deletePartner, getPartners } from '../lib/services/partnersService';
 
 
 
