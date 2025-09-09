@@ -1,11 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
-import { Alert, Button, ScrollView, StyleSheet, View } from 'react-native';
+import { Alert, Button, ScrollView, View } from 'react-native';
 import PartnerCard from '../../components/PartnerCard';
 import { Partner } from '../../interfaces/interfacePartner';
 import { deletePartner, getPartners } from '../../lib/services/partnersService';
-
-
 
 // Define tus rutas para la seguridad de tipos
 type RootStackParamList = {
@@ -43,7 +41,7 @@ export default function Main({ navigation }: Props) {
   };
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-black items-center justify-center">
       <ScrollView>
         {partners.map(partner => (
           <PartnerCard
@@ -62,11 +60,4 @@ export default function Main({ navigation }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// Se ha eliminado la constante de estilos al final del archivo.
