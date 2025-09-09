@@ -1,91 +1,36 @@
+// En tu archivo PartnerCard.js
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 export default function PartnerCard({ partner, onDelete = (id) => {} }) {
     return (
-        <View style={styles.card}>
-            <Text style={styles.name}>{partner.name}</Text>
+        <View className="bg-white rounded-xl p-5 my-2.5 shadow-lg w-full self-center">
+            <Text className="text-2xl font-bold text-gray-800 mb-4 text-center">{partner.name}</Text>
             
-            <View style={styles.infoGroup}>
-                <Text style={styles.label}>Email:</Text>
-                <Text style={styles.value}>{partner.email}</Text>
+            <View className="flex-row justify-between mb-2.5 border-b border-gray-200 pb-1.5">
+                <Text className="text-sm text-gray-600 font-medium">Email:</Text>
+                <Text className="text-sm text-gray-800">{partner.email}</Text>
             </View>
 
-            <View style={styles.infoGroup}>
-                <Text style={styles.label}>Teléfono:</Text>
-                <Text style={styles.value}>{partner.phone}</Text>
+            <View className="flex-row justify-between mb-2.5 border-b border-gray-200 pb-1.5">
+                <Text className="text-sm text-gray-600 font-medium">Teléfono:</Text>
+                <Text className="text-sm text-gray-800">{partner.phone}</Text>
             </View>
 
-            <View style={styles.infoGroup}>
-                <Text style={styles.label}>Fecha de Registro:</Text>
-                <Text style={styles.value}>{partner.dateRecord}</Text>
+            <View className="flex-row justify-between mb-2.5 border-b border-gray-200 pb-1.5">
+                <Text className="text-sm text-gray-600 font-medium">Fecha de Registro:</Text>
+                <Text className="text-sm text-gray-800">{partner.dateRecord}</Text>
             </View>
 
-            <View style={styles.deleteButtonContainer}>
+            <View className="mt-4">
                 <Pressable
-                    style={styles.pressableButton}
-                    onPress={() => {
-                        console.log('¡Pressable activado!' + partner.id);
-                        onDelete(partner.id); // <-- ¡Así es como se llama correctamente!
-                    }}
+                    className="bg-red-500 rounded p-3 items-center justify-center"
+                    onPress={() => onDelete(partner.id)}
                 >
-                    <Text style={styles.buttonText}>Eliminar</Text>
+                    <Text className="text-white font-bold">Eliminar</Text>
                 </Pressable>
             </View>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    card: {
-        backgroundColor: '#ffffff',
-        borderRadius: 15,
-        padding: 20,
-        marginVertical: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-        width: '100%',
-        alignSelf: 'center',
-    },
-    name: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#333',
-        marginBottom: 15,
-        textAlign: 'center',
-    },
-    infoGroup: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
-        paddingBottom: 5,
-    },
-    label: {
-        fontSize: 14,
-        color: '#666',
-        fontWeight: '500',
-    },
-    value: {
-        fontSize: 14,
-        color: '#333',
-    },
-    deleteButtonContainer: {
-        marginTop: 15,
-    },
-    pressableButton: {
-        backgroundColor: '#ff5c5c',
-        borderRadius: 5,
-        padding: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    buttonText: {
-        color: '#fff',
-        fontWeight: 'bold',
-    },
-});
+// Elimina la constante StyleSheet.create({...}) completamente
