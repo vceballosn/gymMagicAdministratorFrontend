@@ -1,4 +1,3 @@
-// En tu archivo PartnerCard.js
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
@@ -33,4 +32,3 @@ export default function PartnerCard({ partner, onDelete = (id) => {} }) {
         </View>
     );
 }
-// Elimina la constante StyleSheet.create({...}) completamente

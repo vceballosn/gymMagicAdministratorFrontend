@@ -1,9 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Link } from 'expo-router'; // Correct import for navigation
 import React, { useEffect } from 'react';
-import { Alert, Button, ScrollView, View } from 'react-native';
-import PartnerCard from '../components/PartnerCard';
+import { Alert, Button, ScrollView, Text, View } from 'react-native';
 import { Partner } from '../interfaces/interfacePartner';
 import { deletePartner, getPartners } from '../lib/services/partnersService';
+import PartnerCard from './PartnerCard';
+
 
 // Define tus rutas para la seguridad de tipos
 type RootStackParamList = {
@@ -41,8 +43,12 @@ export default function Main({ navigation }: Props) {
   };
 
   return (
-    <View className="flex-1 bg-black items-center justify-center">
-      <ScrollView>
+    <View className="flex-1 bg-black ">
+       {/* Use the correct Link component from expo-router */}
+      <Link href='/AddPartnerScreen' className='text-blue-400 text-xl'>
+        <Text>Incluir Socio</Text>
+      </Link>
+      <ScrollView   contentContainerStyle={{ paddingHorizontal: 16 }}>
         {partners.map(partner => (
           <PartnerCard
             key={partner.id}
@@ -51,6 +57,7 @@ export default function Main({ navigation }: Props) {
           />
         ))}
       </ScrollView>
+      
       
       <Button
         title="Ir a Registrar"
