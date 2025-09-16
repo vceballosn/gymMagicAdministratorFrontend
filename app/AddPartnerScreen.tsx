@@ -1,15 +1,15 @@
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { Link } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { createPartner } from '../lib/services/partnersService'; // Asegúrate de que la ruta sea correcta
+import { Alert, Button, Pressable, Text, TextInput, View } from 'react-native';
+import { createPartner } from '../lib/services/partnersService';
 
 export default function AddPartnerScreen() {
-  // Estado para cada campo del formulario
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
   const handleSave = async () => {
-    // Validar que los campos no estén vacíos
     if (!name.trim() || !email.trim() || !phone.trim()) {
       Alert.alert('Error', 'Por favor, llena todos los campos.');
       return;
@@ -19,17 +19,13 @@ export default function AddPartnerScreen() {
       name: name,
       email: email,
       phone: phone,
-      // La fecha se puede agregar automáticamente en el servidor,
-      // pero si es necesaria, la puedes agregar aquí.
-      // dateRecord: new Date().toISOString() 
+      dateRecord: new Date().toISOString()
     };
 
     try {
-      // Llamar a la función del servicio para crear el registro en la API
       await createPartner(newPartner);
       Alert.alert('Éxito', '¡Socio guardado correctamente!');
       
-      // Limpiar los campos del formulario después de guardar
       setName('');
       setEmail('');
       setPhone('');
@@ -40,29 +36,35 @@ export default function AddPartnerScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Agregar Nuevo Socio</Text>
+    <View className="flex-1 p-5 bg-gray-100">
+      <Link asChild href='/'>
+        <Pressable className="text-blue-400 text-xl font-bold mb-5">
+           <FontAwesome5 name="home" size={24} color="black" />
+        </Pressable>
+      </Link>
 
-      <Text style={styles.label}>Nombre:</Text>
+      <Text className="text-2xl font-bold mb-5 text-center text-gray-800">Agregar Nuevo Socio</Text>
+
+      <Text className="text-base mb-1.5 text-gray-700">Nombre:</Text>
       <TextInput
-        style={styles.input}
+        className="h-10 border border-gray-300 rounded-lg p-2.5 mb-4"
         value={name}
         onChangeText={setName}
         placeholder="Escribe el nombre del socio"
       />
 
-      <Text style={styles.label}>Correo electrónico:</Text>
+      <Text className="text-base mb-1.5 text-gray-700">Correo electrónico:</Text>
       <TextInput
-        style={styles.input}
+        className="h-10 border border-gray-300 rounded-lg p-2.5 mb-4"
         value={email}
         onChangeText={setEmail}
         placeholder="Escribe el email del socio"
         keyboardType="email-address"
       />
       
-      <Text style={styles.label}>Teléfono:</Text>
+      <Text className="text-base mb-1.5 text-gray-700">Teléfono:</Text>
       <TextInput
-        style={styles.input}
+        className="h-10 border border-gray-300 rounded-lg p-2.5 mb-4"
         value={phone}
         onChangeText={setPhone}
         placeholder="Escribe el teléfono"
@@ -76,30 +78,3 @@ export default function AddPartnerScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#f5f5f5',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-    color: '#333',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-  },
-});
