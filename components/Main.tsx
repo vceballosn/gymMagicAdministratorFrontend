@@ -1,23 +1,30 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Link } from 'expo-router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Pressable, ScrollView, Text, View } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import { Partner } from '../interfaces/interfacePartner';
 import { deletePartner, getPartners } from '../lib/services/partnersService';
 import PartnerCard from './PartnerCard';
 
-// Define tus rutas para la seguridad de tipos
-type RootStackParamList = {
+// 1. Define los tipos en un solo lugar. Idealmente, esto iría en un archivo separado
+// como 'src/navigation/types.ts' y se importaría aquí.
+export type RootStackParamList = {
   Main: undefined;
   Register: undefined;
+  AddPaymentScreen: { partnerId: number | string };
+  AddPartnerScreen: undefined; // Aseguramos que esta ruta también esté tipada
 };
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Main'>;
+// 2. La prop 'navigation' ya no es necesaria en la firma del componente
+// porque usamos el hook 'useNavigation'
+export default function Main() {
+  const navigation = useNavigation<NativeStackScreenProps<RootStackParamList, 'Main'>['navigation']>();
+  
+  const [partners, setPartners] = useState<Partner[]>([]);
 
-export default function Main({ navigation }: Props) {
-  const [partners, setPartners] = React.useState<Partner[]>([]);
-
+  // 3. Efecto para cargar los socios una vez que el componente se monta
   useEffect(() => {
     const loadPartners = async () => {
       try {
@@ -42,13 +49,10 @@ export default function Main({ navigation }: Props) {
     }
   };
 
-  const handlePage = async (id: any) => {
-    try {
-     console.log("Registrar pago id del Socio"+id)
-    } catch (error) {
-      console.error(error);
-      Alert.alert('Error', 'No se pudo Registrar el Pago. Intenta de nuevo.');
-    }
+  const handlePage = (id: any) => {
+    console.log("id del pago "+id);
+    // Navegamos con seguridad de tipos a la pantalla de pago, pasando el ID
+    navigation.navigate('AddPaymentScreen', { partnerId: id });
   };
 
   return (
@@ -60,7 +64,7 @@ export default function Main({ navigation }: Props) {
               key={partner.id}
               partner={partner}
               onDelete={handleDelete}
-              onAddpage={handlePage}
+              onAddpage={() => handlePage(partner.id)}
             />
           ))
         ) : (
@@ -74,7 +78,8 @@ export default function Main({ navigation }: Props) {
 
       {/* Botón flotante para agregar socio en la parte inferior */}
       <View className="absolute bottom-6 w-full items-center">
-        <Link asChild href='/AddPartnerScreen'>
+        {/* El Link navega directamente, no necesitamos la función handlePage aquí */}
+        <Link asChild href="/AddPartnerScreen">
           <Pressable className="bg-blue-600 rounded-full p-4 shadow-lg">
             <Text className="text-white font-bold text-lg">
               Agregar Nuevo Socio

@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/ListPartnerScreen.js", "app/AddPartnerScreen.js"  ]
+, "app/ListPartnerScreen.js", "app/AddPartnerScreen.js", "lib/services/partnersService.js", "components/Main.jsx", "components/Main.jsx", "app/(tabs)/index.js", "components/Main.jsx"  ]
 }
