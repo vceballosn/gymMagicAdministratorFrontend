@@ -86,6 +86,13 @@ export default function Main() {
             </Text>
           </Pressable>
         </Link>
+        <Link asChild href="/OverduePartnersScreen">
+          <Pressable className="bg-blue-600 rounded-full p-4 shadow-lg">
+            <Text className="text-white font-bold text-lg">
+              Consultar Socios Vencidos 
+            </Text>
+          </Pressable>
+        </Link>
       </View>
     </View>
   );

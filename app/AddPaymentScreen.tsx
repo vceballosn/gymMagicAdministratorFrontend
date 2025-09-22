@@ -1,3 +1,4 @@
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Link } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -56,11 +57,14 @@ export default function AddPaymentScreen() {
   return (
     <View className="flex-1 p-5 bg-gray-100">
       {/* 3. El botón 'Atras' navega a la pantalla anterior */}
-      <Link asChild href="/">
-        <Pressable className="mb-5 self-start">
-          <Text className="text-blue-500 font-bold">Atras</Text>
-        </Pressable>
-      </Link>
+      <View className="absolute top-5 right-5 z-10">
+        <Link asChild href='/'>
+          <Pressable className="p-3">
+            <FontAwesome5 name="home" size={24} color="black" />
+          </Pressable>
+        </Link>
+      </View>
+
 
       <Text className="text-2xl font-bold mb-5 text-center text-gray-800">Agregar Nuevo Pago</Text>
 
