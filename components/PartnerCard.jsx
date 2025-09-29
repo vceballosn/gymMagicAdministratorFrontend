@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-export default function PartnerCard({ partner, onDelete = (id) => {}, onAddpage = (id) => {}}) {
+export default function PartnerCard({ partner, onDelete = (id) => {}, onAddpage = (id) => {},onAddConsult = (id) => {}}) {
     return (
         <View className="bg-white rounded-xl p-5 my-2.5 shadow-lg w-full self-center">
             <Text className="text-2xl font-bold text-gray-800 mb-4 text-center">{partner.name}</Text>
@@ -33,7 +33,10 @@ export default function PartnerCard({ partner, onDelete = (id) => {}, onAddpage 
                     onPress={() => onAddpage(partner.id)}
                 >
                     <Text className="text-white font-bold">Agregar Pago</Text>
-                </Pressable>
+                </Pressable >
+                  <Pressable  className="bg-green-500 rounded p-3 items-center justify-center flex-1 ml-2" onPress={() => onAddConsult(partner.id)}/>
+                    <Text className="text-white font-bold"> Consultar  pagos </Text>
+               
             </View>
         </View>
     );

@@ -14,6 +14,7 @@ export type RootStackParamList = {
   Main: undefined;
   Register: undefined;
   AddPaymentScreen: { partnerId: number | string };
+  PartnerDetailsScreen : { partnerId: number | string };
   AddPartnerScreen: undefined; // Aseguramos que esta ruta también esté tipada
 };
 
@@ -55,6 +56,11 @@ export default function Main() {
     navigation.navigate('AddPaymentScreen', { partnerId: id });
   };
 
+  // Ejemplo de navegación desde Main.tsx
+const handleViewDetails = (id: any) => {
+  navigation.navigate('PartnerDetailsScreen', { partnerId: id });
+};
+
   return (
     <View className="flex-1 bg-black">
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 80 }}>
@@ -65,6 +71,7 @@ export default function Main() {
               partner={partner}
               onDelete={handleDelete}
               onAddpage={() => handlePage(partner.id)}
+              onAddConsult={() => handleViewDetails(partner.id)}
             />
           ))
         ) : (
@@ -92,6 +99,10 @@ export default function Main() {
               Consultar Socios Vencidos 
             </Text>
           </Pressable>
+        </Link>
+        
+        <Link asChild href="/PartnerDetailsScreen">
+        
         </Link>
       </View>
     </View>

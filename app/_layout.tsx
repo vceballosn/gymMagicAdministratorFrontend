@@ -6,6 +6,7 @@ export type RootStackParamList = {
   Register: undefined;
   AddPaymentScreen: { partnerId: number | string };
   OverduePartnersScreen: undefined; 
+  PartnerDetailsScreen: { partnerId: number }; // Requiere el ID del socio
 };
 
 export default function Layout() {
