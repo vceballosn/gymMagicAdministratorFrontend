@@ -34,9 +34,9 @@ export default function PartnerCard({ partner, onDelete = (id) => {}, onAddpage 
                 >
                     <Text className="text-white font-bold">Agregar Pago</Text>
                 </Pressable >
-                  <Pressable  className="bg-green-500 rounded p-3 items-center justify-center flex-1 ml-2" onPress={() => onAddConsult(partner.id)}/>
+                  <Pressable  className="bg-green-500 rounded p-3 items-center justify-center flex-1 ml-2" onPress={() => onAddConsult(partner.id)}>
                     <Text className="text-white font-bold"> Consultar  pagos </Text>
-               
+                 </Pressable>
             </View>
         </View>
     );
