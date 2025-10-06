@@ -1,9 +1,9 @@
 // src/lib/services/paymentsService.ts
-import { PartnerDetails } from '../../interfaces/interfacePartnerDetails';
+
 
 // Asegúrate de reemplazar esta URL con la dirección de tu API
 const API_URL = 'http://localhost:9010/api/v1/Payments'; 
-const API_BASE_URL = 'http://localhost:9010/api/v1';
+
 
 /**
  * Crea un nuevo pago en la base de datos a través de la API.
@@ -39,22 +39,4 @@ export const createPayment = async (paymentData: {
   }
 };
 
-export const getPartnerDetails = async (partnerId: number): Promise<PartnerDetails> => {
-  const url = `${API_BASE_URL}/partners/${partnerId}/with-payments`;
-  
-  try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Error al cargar los detalles del socio: ${response.status} - ${errorData.error}`);
-    }
-
-    const data: PartnerDetails = await response.json();
-    return data;
-  } catch (error) {
-    console.error('API Error:', error);
-    throw error;
-  }
-};
 

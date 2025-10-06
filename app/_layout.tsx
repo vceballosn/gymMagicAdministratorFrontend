@@ -4,6 +4,7 @@ import { View } from "react-native";
 export type RootStackParamList = {
   Main: undefined;
   Register: undefined;
+  DelinquentPartnersScreen: undefined;
   AddPaymentScreen: { partnerId: number | string };
   OverduePartnersScreen: undefined; 
   PartnerDetailsScreen: { partnerId: number }; // Requiere el ID del socio

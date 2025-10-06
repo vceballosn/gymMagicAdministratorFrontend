@@ -1,5 +1,5 @@
+import { Partner } from '../../interfaces/interfacePartner';
 import { PartnerDetails } from '../../interfaces/interfacePartnerDetails';
-
 const API_URL = 'http://localhost:9010/api/v1/partners';
 const API_BASE_URL = 'http://localhost:9010/api/v1';
 
@@ -95,6 +95,25 @@ export const getPartnerDetails = async (partnerId: number): Promise<PartnerDetai
     }
 
     const data: PartnerDetails = await response.json();
+    return data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+};
+
+export const getDelinquentPartners = async (): Promise<Partner[]> => {
+  const url = `${API_BASE_URL}/partners/delinquent`;
+  
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error al cargar socios con pagos pendientes: ${response.status} - ${errorData.error}`);
+    }
+
+    const data: Partner[] = await response.json();
     return data;
   } catch (error) {
     console.error('API Error:', error);

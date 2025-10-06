@@ -56,6 +56,9 @@ export default function Main({ navigation }: Props) {
         title="Ir a Registrar"
         onPress={() => navigation.navigate('Register')}
       />
+      
+      
+     
     </View>
   );
 }

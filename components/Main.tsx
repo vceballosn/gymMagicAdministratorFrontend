@@ -100,6 +100,14 @@ const handleViewDetails = (id: any) => {
             </Text>
           </Pressable>
         </Link>
+
+         <Link asChild href="/DelinquentPartnersScreen">
+    <Pressable className="bg-blue-600 rounded-full p-4 shadow-lg">
+        <Text className="text-white font-bold text-lg">
+            Consultar Socios con Pagos Vencidos
+        </Text>
+    </Pressable>
+</Link>
         
         <Link asChild href="/PartnerDetailsScreen">
         
