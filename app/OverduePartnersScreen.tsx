@@ -1,9 +1,9 @@
 // src/app/OverduePartnersScreen.tsx
 
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { Link } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Alert, Pressable, ScrollView, Text, View } from 'react-native';
-
 import { Partner } from '../interfaces/interfacePartner';
 import { getOverduePartners } from '../lib/services/partnersService';
 
@@ -41,12 +41,14 @@ export default function OverduePartnersScreen() {
   return (
     <View className="flex-1 bg-black">
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 80 }}>
-        {/* Botón de Atrás */}
-        <Link asChild href="/">
-          <Pressable className="mt-6 mb-5 self-start">
-            <Text className="text-blue-500 font-bold">Atras</Text>
+        {/* 3. El botón 'Atras' navega a la pantalla anterior */}
+      <View className="absolute top-2 right-5 z-10">
+        <Link asChild href='/'>
+          <Pressable className="p-3">
+            <FontAwesome5 name="home" size={24} color="white" />
           </Pressable>
         </Link>
+      </View>
         
         <Text className="text-2xl font-bold mb-5 text-white text-center">Socios Vencidos</Text>
 

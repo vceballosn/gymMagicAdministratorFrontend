@@ -1,10 +1,10 @@
 // app/DelinquentPartnersScreen.tsx
 
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Link, useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, Pressable, ScrollView, Text, View } from 'react-native';
-
 import { Partner } from '../interfaces/interfacePartner';
 import { getDelinquentPartners } from '../lib/services/partnersService';
 
@@ -49,18 +49,17 @@ export default function DelinquentPartnersScreen() {
   }
 
   return (
+    
     <View className="flex-1 bg-black">
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 80 }}>
-        
-        {/* Botón de Atrás */}
-        <Link asChild href="/">
-          <Pressable className="mt-6 mb-5 self-start">
-            <Text className="text-blue-500 font-bold text-lg">
-              ← Atrás
-            </Text>
+  {/* 3. El botón 'Atras' navega a la pantalla anterior */}
+      <View className="absolute top-2 right-5 z-10">
+        <Link asChild href='/'>
+          <Pressable className="p-3">
+            <FontAwesome5 name="home" size={24} color="white" />
           </Pressable>
         </Link>
-        
+      </View>
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 80 }}>
         <Text className="text-3xl font-bold mb-6 text-yellow-500 text-center">
           Pagos Pendientes ⚠️
         </Text>
