@@ -70,6 +70,7 @@ export default function DelinquentPartnersScreen() {
             <PartnerCard
               key={partner.id}
               partner={partner}
+              showActions={false}
               // Si tienes navegación a detalles o añadir pago, añádela aquí
             />
           ))
