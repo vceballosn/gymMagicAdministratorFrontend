@@ -83,36 +83,44 @@ const handleViewDetails = (id: any) => {
         )}
       </ScrollView>
 
-      {/* Botón flotante para agregar socio en la parte inferior */}
-      <View className="absolute bottom-6 w-full items-center">
-        {/* El Link navega directamente, no necesitamos la función handlePage aquí */}
-        <Link asChild href="/AddPartnerScreen">
-          <Pressable className="bg-blue-600 rounded-full p-4 shadow-lg">
-            <Text className="text-white font-bold text-lg">
-              Agregar Nuevo Socio
+    {/* Contenedor principal para los botones flotantes */}
+<View 
+    // CLAVE 1: Usar 'flex-row' para alinear horizontalmente
+    // CLAVE 2: Usar 'justify-between' o 'justify-around' para espaciar
+    // CLAVE 3: Asegurar que la View ocupe un ancho completo para la distribución
+    className="absolute bottom-6 w-full flex-row justify-around px-4"
+>
+    
+    {/* Botón 1: Agregar Nuevo Socio */}
+    <Link asChild href="/AddPartnerScreen">
+        {/* Usamos 'flex-1' y 'mx-1' para que los botones compartan el espacio y tengan un pequeño margen */}
+        <Pressable className="bg-blue-600 rounded-full p-2 shadow-lg flex-1 mx-1 items-center">
+            <Text className="text-white font-bold text-sm text-center">
+                Nuevo Socio
             </Text>
-          </Pressable>
-        </Link>
-        <Link asChild href="/OverduePartnersScreen">
-          <Pressable className="bg-blue-600 rounded-full p-4 shadow-lg">
-            <Text className="text-white font-bold text-lg">
-              Consultar Socios Vencidos 
+        </Pressable>
+    </Link>
+    
+    {/* Botón 2: Consultar Socios Vencidos */}
+    <Link asChild href="/OverduePartnersScreen">
+        <Pressable className="bg-yellow-600 rounded-full p-2 shadow-lg flex-1 mx-1 items-center">
+            <Text className="text-white font-bold text-sm text-center">
+                Socios Vencidos 
             </Text>
-          </Pressable>
-        </Link>
+        </Pressable>
+    </Link>
 
-         <Link asChild href="/DelinquentPartnersScreen">
-    <Pressable className="bg-blue-600 rounded-full p-4 shadow-lg">
-        <Text className="text-white font-bold text-lg">
-            Consultar Socios con Pagos Vencidos
-        </Text>
-    </Pressable>
-</Link>
-        
-        <Link asChild href="/PartnerDetailsScreen">
-        
-        </Link>
-      </View>
+    {/* Botón 3: Consultar Socios con Pagos Vencidos */}
+    <Link asChild href="/DelinquentPartnersScreen">
+        <Pressable className="bg-red-600 rounded-full p-2 shadow-lg flex-1 mx-1 items-center">
+            <Text className="text-white font-bold text-sm text-center">
+                Pagos Vencidos
+            </Text>
+        </Pressable>
+    </Link>
+    
+    {/* La última etiqueta Link estaba vacía y se eliminó para limpiar el código */}
+</View>
     </View>
   );
 }
